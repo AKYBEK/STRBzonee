@@ -1,26 +1,25 @@
 package com.example.examplemod.world;
 
-import net.minecraft.data.worldgen.BiomeData;
-import net.minecraft.sounds.Music;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 
 public class ZoneBiomes {
 
     public static Biome createGreenZone() {
         MobSpawnSettings.Builder mobSpawnSettings = new MobSpawnSettings.Builder();
-        mobSpawnSettings.addSpawn(net.minecraft.world.entity.EntityType.SHEEP, new net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData(net.minecraft.world.entity.EntityType.SHEEP, 12, 4, 4));
-        mobSpawnSettings.addSpawn(net.minecraft.world.entity.EntityType.PIG, new net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData(net.minecraft.world.entity.EntityType.PIG, 10, 4, 4));
-        mobSpawnSettings.addSpawn(net.minecraft.world.entity.EntityType.COW, new net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData(net.minecraft.world.entity.EntityType.COW, 8, 4, 4));
-        mobSpawnSettings.addSpawn(net.minecraft.world.entity.EntityType.CHICKEN, new net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData(net.minecraft.world.entity.EntityType.CHICKEN, 10, 4, 4));
+        mobSpawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.SHEEP, 12, 4, 4));
+        mobSpawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.PIG, 10, 4, 4));
+        mobSpawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.COW, 8, 4, 4));
+        mobSpawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.CHICKEN, 10, 4, 4));
 
         BiomeGenerationSettings.Builder genSettings = new BiomeGenerationSettings.Builder();
-        genSettings.addFeature(net.minecraft.world.level.levelgen.GenerationStep.Decoration.VEGETAL_DECORATION, net.minecraft.world.level.levelgen.placement.PlacedFeatures.TREES_PLAINS);
 
         return new Biome.BiomeBuilder()
-                .precipitation(net.minecraft.world.level.biome.Biome.Precipitation.RAIN)
-                .biomeCategory(net.minecraft.world.level.biome.Biome.BiomeCategory.FOREST)
+                .precipitation(Biome.Precipitation.RAIN)
+                .biomeCategory(Biome.BiomeCategory.FOREST)
                 .temperature(0.7f)
                 .downfall(0.8f)
                 .specialEffects(new net.minecraft.world.level.biome.BiomeSpecialEffects.Builder()
@@ -38,15 +37,14 @@ public class ZoneBiomes {
 
     public static Biome createYellowZone() {
         MobSpawnSettings.Builder mobSpawnSettings = new MobSpawnSettings.Builder();
-        mobSpawnSettings.addSpawn(net.minecraft.world.entity.EntityType.SHEEP, new net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData(net.minecraft.world.entity.EntityType.SHEEP, 12, 4, 4));
-        mobSpawnSettings.addSpawn(net.minecraft.world.entity.EntityType.PIG, new net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData(net.minecraft.world.entity.EntityType.PIG, 10, 4, 4));
+        mobSpawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.SHEEP, 12, 4, 4));
+        mobSpawnSettings.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.PIG, 10, 4, 4));
 
         BiomeGenerationSettings.Builder genSettings = new BiomeGenerationSettings.Builder();
-        genSettings.addFeature(net.minecraft.world.level.levelgen.GenerationStep.Decoration.VEGETAL_DECORATION, net.minecraft.world.level.levelgen.placement.PlacedFeatures.TREES_SAVANNA);
 
         return new Biome.BiomeBuilder()
-                .precipitation(net.minecraft.world.level.biome.Biome.Precipitation.NONE)
-                .biomeCategory(net.minecraft.world.level.biome.Biome.BiomeCategory.SAVANNA)
+                .precipitation(Biome.Precipitation.NONE)
+                .biomeCategory(Biome.BiomeCategory.SAVANNA)
                 .temperature(1.2f)
                 .downfall(0.0f)
                 .specialEffects(new net.minecraft.world.level.biome.BiomeSpecialEffects.Builder()
@@ -64,15 +62,14 @@ public class ZoneBiomes {
 
     public static Biome createRedZone() {
         MobSpawnSettings.Builder mobSpawnSettings = new MobSpawnSettings.Builder();
-        mobSpawnSettings.addSpawn(net.minecraft.world.entity.EntityType.HUSK, new net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData(net.minecraft.world.entity.EntityType.HUSK, 80, 4, 4));
-        mobSpawnSettings.addSpawn(net.minecraft.world.entity.EntityType.ZOMBIE, new net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData(net.minecraft.world.entity.EntityType.ZOMBIE, 80, 4, 4));
+        mobSpawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.HUSK, 80, 4, 4));
+        mobSpawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.ZOMBIE, 80, 4, 4));
 
         BiomeGenerationSettings.Builder genSettings = new BiomeGenerationSettings.Builder();
-        genSettings.addFeature(net.minecraft.world.level.levelgen.GenerationStep.Decoration.VEGETAL_DECORATION, net.minecraft.world.level.levelgen.placement.PlacedFeatures.DEAD_BUSH_DESERT);
 
         return new Biome.BiomeBuilder()
-                .precipitation(net.minecraft.world.level.biome.Biome.Precipitation.NONE)
-                .biomeCategory(net.minecraft.world.level.biome.Biome.BiomeCategory.DESERT)
+                .precipitation(Biome.Precipitation.NONE)
+                .biomeCategory(Biome.BiomeCategory.DESERT)
                 .temperature(2.0f)
                 .downfall(0.0f)
                 .specialEffects(new net.minecraft.world.level.biome.BiomeSpecialEffects.Builder()
@@ -90,15 +87,15 @@ public class ZoneBiomes {
 
     public static Biome createBlackZone() {
         MobSpawnSettings.Builder mobSpawnSettings = new MobSpawnSettings.Builder();
-        mobSpawnSettings.addSpawn(net.minecraft.world.entity.EntityType.ZOMBIE, new net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData(net.minecraft.world.entity.EntityType.ZOMBIE, 95, 4, 4));
-        mobSpawnSettings.addSpawn(net.minecraft.world.entity.EntityType.SKELETON, new net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData(net.minecraft.world.entity.EntityType.SKELETON, 100, 4, 4));
-        mobSpawnSettings.addSpawn(net.minecraft.world.entity.EntityType.CREEPER, new net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData(net.minecraft.world.entity.EntityType.CREEPER, 100, 4, 4));
+        mobSpawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.ZOMBIE, 95, 4, 4));
+        mobSpawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 100, 4, 4));
+        mobSpawnSettings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.CREEPER, 100, 4, 4));
 
         BiomeGenerationSettings.Builder genSettings = new BiomeGenerationSettings.Builder();
 
         return new Biome.BiomeBuilder()
-                .precipitation(net.minecraft.world.level.biome.Biome.Precipitation.NONE)
-                .biomeCategory(net.minecraft.world.level.biome.Biome.BiomeCategory.NETHER)
+                .precipitation(Biome.Precipitation.NONE)
+                .biomeCategory(Biome.BiomeCategory.NETHER)
                 .temperature(2.0f)
                 .downfall(0.0f)
                 .specialEffects(new net.minecraft.world.level.biome.BiomeSpecialEffects.Builder()
