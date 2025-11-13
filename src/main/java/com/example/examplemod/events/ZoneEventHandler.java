@@ -19,7 +19,7 @@ public class ZoneEventHandler {
             return;
         }
 
-        ZoneType zone = ZoneManager.getZoneAtPosition(event.getWorld().getLevel(), event.getPos());
+        ZoneType zone = ZoneManager.getZoneAtPosition((net.minecraft.world.level.Level) event.getWorld(), event.getPos());
         Block placedBlock = event.getPlacedBlock().getBlock();
 
         if (!ZoneRestrictions.canPlaceBlock(zone, placedBlock)) {
