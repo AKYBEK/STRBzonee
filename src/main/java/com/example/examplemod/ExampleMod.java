@@ -3,6 +3,7 @@ package com.example.examplemod;
 import com.example.examplemod.commands.ZoneInfoCommand;
 import com.example.examplemod.zones.ZoneManager;
 import com.example.examplemod.zones.ZoneRestrictions;
+import com.example.examplemod.world.BiomeRegistry;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -17,6 +18,8 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 
 import java.util.stream.Collectors;
@@ -31,6 +34,8 @@ public class ExampleMod
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
+
+        FMLJavaModLoadingContext.get().getModEventBus().register(BiomeRegistry.BIOMES);
 
         MinecraftForge.EVENT_BUS.register(this);
     }

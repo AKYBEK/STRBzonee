@@ -26,17 +26,9 @@ public class ZoneManager {
 
     public static void initializeDefaultZones() {
         registerBiomeZone(new ResourceLocation("minecraft:plains"), ZoneType.SPAWN);
-        registerBiomeZone(new ResourceLocation("minecraft:forest"), ZoneType.GREEN);
-        registerBiomeZone(new ResourceLocation("minecraft:birch_forest"), ZoneType.GREEN);
-        registerBiomeZone(new ResourceLocation("minecraft:taiga"), ZoneType.YELLOW);
-        registerBiomeZone(new ResourceLocation("minecraft:savanna"), ZoneType.YELLOW);
-        registerBiomeZone(new ResourceLocation("minecraft:desert"), ZoneType.RED);
-        registerBiomeZone(new ResourceLocation("minecraft:badlands"), ZoneType.RED);
-        registerBiomeZone(new ResourceLocation("minecraft:nether_wastes"), ZoneType.BLACK);
-        registerBiomeZone(new ResourceLocation("minecraft:warped_forest"), ZoneType.BLACK);
-        registerBiomeZone(new ResourceLocation("minecraft:crimson_forest"), ZoneType.BLACK);
-        registerBiomeZone(new ResourceLocation("minecraft:basalt_deltas"), ZoneType.BLACK);
-        registerBiomeZone(new ResourceLocation("minecraft:soul_sand_valley"), ZoneType.BLACK);
-        registerBiomeZone(new ResourceLocation("minecraft:the_end"), ZoneType.BLACK);
+        registerBiomeZone(new ResourceLocation("examplemod:green_zone"), ZoneType.GREEN);
+        registerBiomeZone(new ResourceLocation("examplemod:yellow_zone"), ZoneType.YELLOW);
+        registerBiomeZone(new ResourceLocation("examplemod:red_zone"), ZoneType.RED);
+        registerBiomeZone(new ResourceLocation("examplemod:black_zone"), ZoneType.BLACK);
     }
 }
