@@ -1,0 +1,38 @@
+{
+  "precipitation": "none",
+  "temperature": 2.0,
+  "downfall": 0.0,
+  "effects": {
+    "sky_color": 0x1a1a1a,
+    "water_color": 0x3F1F1F,
+    "water_fog_color": 0x050533,
+    "fog_color": 0x1a1a1a,
+    "grass_color_modifier": "none",
+    "foliage_color": 0x2F2F2F
+  },
+  "spawners": {
+    "monster": [
+      {
+        "type": "minecraft:zombie",
+        "weight": 95,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:skeleton",
+        "weight": 100,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:creeper",
+        "weight": 100,
+        "minCount": 4,
+        "maxCount": 4
+      }
+    ]
+  },
+  "features": [],
+  "carvers": {},
+  "general_decorators": []
+}

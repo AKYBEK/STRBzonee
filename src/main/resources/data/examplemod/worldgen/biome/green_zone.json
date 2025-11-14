@@ -1,0 +1,44 @@
+{
+  "precipitation": "rain",
+  "temperature": 0.7,
+  "downfall": 0.8,
+  "effects": {
+    "sky_color": 0x78A7FF,
+    "water_color": 0x3F76E4,
+    "water_fog_color": 0x050533,
+    "fog_color": 0xC0D8FF,
+    "grass_color_modifier": "none",
+    "foliage_color": 0x228B22
+  },
+  "spawners": {
+    "creature": [
+      {
+        "type": "minecraft:sheep",
+        "weight": 12,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:pig",
+        "weight": 10,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:cow",
+        "weight": 8,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:chicken",
+        "weight": 10,
+        "minCount": 4,
+        "maxCount": 4
+      }
+    ]
+  },
+  "features": [],
+  "carvers": {},
+  "general_decorators": []
+}
