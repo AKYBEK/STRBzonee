@@ -1,15 +1,12 @@
 package com.example.examplemod;
 
 import com.example.examplemod.commands.ZoneInfoCommand;
-import com.example.examplemod.zones.ZoneManager;
+import com.example.examplemod.commands.DimensionTeleportCommand;
+import com.example.examplemod.zones.DimensionManager;
 import com.example.examplemod.zones.ZoneRestrictions;
-import com.example.examplemod.world.BiomeRegistry;
-import com.mojang.logging.LogUtils;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import com.example.examplemod.world.DimensionRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -18,70 +15,52 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
-
-import java.util.stream.Collectors;
+import org.slf4j.LoggerFactory;
 
 @Mod("examplemod")
-public class ExampleMod
-{
-    private static final Logger LOGGER = LogUtils.getLogger();
+public class ExampleMod {
+    private static final Logger LOGGER = LoggerFactory.getLogger("examplemod");
 
-    public ExampleMod()
-    {
+    public ExampleMod() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
 
-        FMLJavaModLoadingContext.get().getModEventBus().register(BiomeRegistry.BIOMES);
+        FMLJavaModLoadingContext.get().getModEventBus().register(DimensionRegistry.class);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void setup(final FMLCommonSetupEvent event)
-    {
+    private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            LOGGER.info("Initializing Zone System...");
-            ZoneManager.initializeDefaultZones();
+            LOGGER.info("Initializing Dimension System...");
+            DimensionManager.initializeDimensions();
             ZoneRestrictions.initializeRestrictions();
-            LOGGER.info("Zone System initialized successfully!");
+            LOGGER.info("Dimension System initialized successfully!");
         });
     }
 
-    private void enqueueIMC(final InterModEnqueueEvent event)
-    {
-        InterModComms.sendTo("examplemod", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
+    private void enqueueIMC(final InterModEnqueueEvent event) {
+        InterModComms.sendTo("examplemod", "helloworld", () -> {
+            LOGGER.info("Hello world from the MDK");
+            return "Hello world";
+        });
     }
 
-    private void processIMC(final InterModProcessEvent event)
-    {
-        LOGGER.info("Got IMC {}", event.getIMCStream().
-                map(m->m.messageSupplier().get()).
-                collect(Collectors.toList()));
-    }
-
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event)
-    {
-        LOGGER.info("HELLO from server starting");
+    private void processIMC(final InterModProcessEvent event) {
+        LOGGER.info("Got IMC {}", event.getIMCStream().map(m -> m.messageSupplier().get()).toList());
     }
 
     @SubscribeEvent
-    public void onRegisterCommands(RegisterCommandsEvent event)
-    {
+    public void onServerStarting(ServerStartingEvent event) {
+        LOGGER.info("Server starting with Dimension System");
+    }
+
+    @SubscribeEvent
+    public void onRegisterCommands(RegisterCommandsEvent event) {
         ZoneInfoCommand.register(event.getDispatcher());
-        LOGGER.info("Zone commands registered");
-    }
-
-    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents
-    {
-        @SubscribeEvent
-        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent)
-        {
-            LOGGER.info("HELLO from Register Block");
-        }
+        DimensionTeleportCommand.register(event.getDispatcher());
+        LOGGER.info("Zone and teleport commands registered");
     }
 }
