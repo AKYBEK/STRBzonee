@@ -1,0 +1,8 @@
+{
+  "name": "minecraft-strb-zone-mod",
+  "version": "1.0.0",
+  "description": "Minecraft Forge mod with zone/dimension system",
+  "scripts": {
+    "build": "./gradlew build"
+  }
+}
