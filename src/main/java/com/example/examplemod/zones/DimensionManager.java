@@ -31,7 +31,7 @@ public class DimensionManager {
             ServerLevel targetLevel = serverLevel.getServer().getLevel(targetDimension);
 
             if (targetLevel != null && !player.level.equals(targetLevel)) {
-                player.teleportTo(targetLevel, player.getX(), player.getY(), player.getZ());
+                player.changeDimension(targetLevel);
             }
         }
     }

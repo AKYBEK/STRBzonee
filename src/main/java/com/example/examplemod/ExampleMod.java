@@ -4,7 +4,6 @@ import com.example.examplemod.commands.ZoneInfoCommand;
 import com.example.examplemod.commands.DimensionTeleportCommand;
 import com.example.examplemod.zones.DimensionManager;
 import com.example.examplemod.zones.ZoneRestrictions;
-import com.example.examplemod.world.DimensionRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -26,8 +25,6 @@ public class ExampleMod {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-
-        FMLJavaModLoadingContext.get().getModEventBus().register(DimensionRegistry.class);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
