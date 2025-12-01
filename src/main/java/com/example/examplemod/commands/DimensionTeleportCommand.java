@@ -6,7 +6,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.player.Player;
 
 public class DimensionTeleportCommand {
@@ -27,7 +27,7 @@ public class DimensionTeleportCommand {
                             CommandSourceStack source = ctx.getSource();
 
                             if (!(source.getEntity() instanceof Player)) {
-                                source.sendFailure(Component.literal("This command can only be run by a player"));
+                                source.sendFailure(new TextComponent("This command can only be run by a player"));
                                 return 0;
                             }
 
@@ -37,12 +37,12 @@ public class DimensionTeleportCommand {
                             try {
                                 zone = ZoneType.valueOf(zoneName.toUpperCase());
                             } catch (IllegalArgumentException e) {
-                                source.sendFailure(Component.literal("Unknown zone: " + zoneName));
+                                source.sendFailure(new TextComponent("Unknown zone: " + zoneName));
                                 return 0;
                             }
 
                             DimensionManager.teleportPlayerToZone(player, zone);
-                            source.sendSuccess(Component.literal("Teleported to " + zone.getDisplayName()), true);
+                            source.sendSuccess(new TextComponent("Teleported to " + zone.getDisplayName()), true);
                             return 1;
                         })
                 )
