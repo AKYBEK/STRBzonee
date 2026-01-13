@@ -1,22 +1,16 @@
 package com.example.examplemod.zones;
 
 import com.example.examplemod.world.DimensionRegistry;
-import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.event.server.ServerStartedEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Mod.EventBusSubscriber(modid = "examplemod", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DimensionManager {
     private static final Logger LOGGER = LoggerFactory.getLogger("examplemod");
     private static final Map<ZoneType, ResourceKey<Level>> ZONE_DIMENSIONS = new HashMap<>();
@@ -53,19 +47,5 @@ public class DimensionManager {
             }
         }
         return ZoneType.SPAWN;
-    }
-
-    @SubscribeEvent
-    public static void onServerStarted(ServerStartedEvent event) {
-        LOGGER.info("Ensuring all zone dimensions are loaded...");
-
-        for (Map.Entry<ZoneType, ResourceKey<Level>> entry : ZONE_DIMENSIONS.entrySet()) {
-            ServerLevel level = event.getServer().getLevel(entry.getValue());
-            if (level == null) {
-                LOGGER.warn("Dimension for zone {} was not loaded", entry.getKey());
-            } else {
-                LOGGER.info("Zone {} dimension loaded successfully", entry.getKey());
-            }
-        }
     }
 }
